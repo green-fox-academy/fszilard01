@@ -1,0 +1,8 @@
+az internet ereder
+hálozatok és internet
+mi az IP cím
+mi az a Router
+adathalászat, Phising
+HTTP - https,státusz kódok, metótudok
+DNS- rétegek, lekérdezések
+DoS,DDoS

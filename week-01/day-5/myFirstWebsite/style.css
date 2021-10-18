@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family-Roboto+Slab&display-swap');
+
+
+body {
+  font-family: "consolas", 'courior';
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.6em;
+  margin: 0;
+  background-image: url('assets/topography.png');
+  background-repeat: repeat;
+  background-position: center bottom;
+}
+
+main {
+  padding-top: 40px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.picture { 
+  float: left;
+  display: table;
+  margin: 15px 10%;
+}
+
+nav {
+  background-color: #333333;
+  overflow: hidden;
+  
+}
+
+.text {
+  float: right;
+  padding-right: 10%;
+}
+  
+.topnav a {
+  color: #ff0099;
+  padding: 15px 25px;
+  font-size: 17px;
+  display: inline-block;
+}
+  
+.topnav a:hover {  
+  color: white;
+}
+     
+h1 , h2 , h3 {
+  font-family:"Roboto Slab"   
+}
+
+.center-block {
+  text-align: center;
+}
+
+.purple {
+  color: #ff0099;
+}
+
+p {
+  line-height: 30px;
+}
