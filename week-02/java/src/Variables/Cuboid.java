@@ -12,10 +12,10 @@ public class Cuboid {
         double c = 78;
 
         double volume = a * b * c;
-        double surface = 2 * ((a + b) + (a + c) + (b + c));
+        double surface = 2 * ((a * b) + (a * c) + (b * c));
 
-        System.out.printf("A téglatest térfogata: " + "%.0f\n", surface);
-        System.out.printf("A téglatest felülete: " + "%.0f\n", volume);
+        System.out.printf("A téglatest térfogata: " + "%.0f\n", volume);
+        System.out.printf("A téglatest felülete: " + "%.0f\n", surface);
     }
 }
 
