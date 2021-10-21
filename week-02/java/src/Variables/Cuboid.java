@@ -14,8 +14,8 @@ public class Cuboid {
         double volume = a * b * c;
         double surface = 2 * ((a + b) + (a + c) + (b + c));
 
-        System.out.println("A téglatest felülete: " + surface);
-        System.out.println("A téglatest térfogata: " + volume);
+        System.out.printf("A téglatest térfogata: " + "%.0f\n", surface);
+        System.out.printf("A téglatest felülete: " + "%.0f\n", volume);
     }
 }
 
