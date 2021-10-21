@@ -17,9 +17,9 @@ public class TwoNumbers {
         // Írasd ki 22-őt osztva 13-mal művelet osztási maradékát.
 
         System.out.println(13 + 22);
-        System.out.println(22 - 13);
+        System.out.println(13 - 22);
         System.out.println(13 * 22);
-        System.out.println(22 + "/" + 13);
+        System.out.println(22.0 / 13);
         System.out.println(22 / 13);
         System.out.println(22 % 13);
 
