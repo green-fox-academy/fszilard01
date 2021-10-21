@@ -1,7 +1,5 @@
 package Conditionals;
 
-import jdk.nashorn.internal.ir.IfNode;
-
 import java.util.Scanner;
 
 public class PartyIndicator {
