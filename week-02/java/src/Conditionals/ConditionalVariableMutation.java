@@ -1,7 +1,5 @@
 package Conditionals;
 
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
-
 public class ConditionalVariableMutation {
     public static void main(String[] args) {
         double a = 24;
@@ -49,7 +47,7 @@ public class ConditionalVariableMutation {
         } else {
             out3 = "Fuss, Forest, Fuss! ";
         }
-        
+
         System.out.println(out3);
     }
 }
