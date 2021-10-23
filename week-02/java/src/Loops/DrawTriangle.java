@@ -8,9 +8,9 @@ public class DrawTriangle {
         System.out.println("Kérek egy számot: ");
         Scanner scanner = new Scanner(System.in);
         int lineCount = scanner.nextInt();
-        String stars = " ";
+        String stars = "";
 
-        for (int i = 0; i <= lineCount; i++){
+        for (int i = 1; i <= lineCount; i++){
             stars += "*";
             System.out.println(stars);
 
