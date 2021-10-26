@@ -12,9 +12,7 @@ public class Factorio {
         if (userNumber <= 0) {
             System.out.println("Nullánál nagyobb számot kérek !");
         }
-
     }
-
     public static int factorio(int input) {
         int factor = 1;
         for (int i = 1; i <= input; i++) {
