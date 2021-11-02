@@ -5,7 +5,7 @@
 |   |  Tier 1. | Tier2. | Tier 3. | Tier 4. |
 |---|---|---|---|---|
 | Aktív kiszolgáló egyszégek az ICT eszközök ellátására  | N  | N+1  | N+1  | Bármely elem hibája után is ‚N‘  |
-| Ellátási útvonal  | 1  | 1  | 1 aktiv, 1 tartalék   | 2 egyidajűleg aktiv|
+| Ellátási útvonal  | 1  | 1  | 1 aktiv, 1 tartalék   | 2 egyidejűleg aktiv|
 | Szolgáltatás-kiesés nélkül karbantartható  | Nem   |Nem   |Igen   |Igen   |
 | Hibatűrő  |Nem   |Nem   |Nem   |Igen   |
 | Független ellátási útvonalak  |Nem   |Nem   |Nem   |Nem   |
@@ -60,7 +60,7 @@ Előnyei:
 
 Kisebb teljesítményigény ,
 alacsonyabb hely- és hűtési követelmények,
-kevesebb a kábelezési követelményeket,
+kevesebb a kábelezési követelmények,
 lehetővé teszi a gyorsabb kiszolgáló-kiszolgáló közötti kommunikációt,
 nagyobb rugalmasságot biztosítanak.
 
@@ -69,7 +69,7 @@ nagyobb rugalmasságot biztosítanak.
 
 Elméletben egy nagyon erős PC akár hasonló teljesítményt tud nyújtani mint egy szerver.
 Az árkülönbséget az adja, hogy a szervereket úgy tervezik, hogy éveket tudjanak non-stop menni.
-Ez a felhasznált anyagok közti különbségből adódik.A szerver alaplapok jóval több memóriát tudnak kezelni.
+Ez a felhasznált anyagok közti különbségből adódik. A szerver alaplapok jóval több memóriát tudnak kezelni.
 Nagyon fontos alkatrész a RAID kártya, amit a legtöbb PC-n is megtalálhatunk az alaplapra integrálva.
 Ugyanakkor az alaplapi verzió, nagyon buta, és megbízhatatlan. A szerver alaplapokra lényegesen jobbak kerülnek, de igazán jó szerverekbe csak hardveres RAID kártyát raknak,
 ezek tehermentesítik a CPU-t, az adatokat sokkal gyorsabban tudják kezelni, ezen kívül kiegészíthetőek akkumulátorral,
