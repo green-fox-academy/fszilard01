@@ -9,5 +9,5 @@
 
 
 SELECT TOP 50 Person.Person.FirstName,Person.Person.LastName, LEFT(EmailAddress, CHARINDEX('@', EmailAddress) -1 )
-FROM Person.Person FULL JOIN Person.EmailAddress
+FROM Person.Person INNER JOIN Person.EmailAddress
 ON Person.Person.BusinessEntityID = Person.EmailAddress.BusinessEntityID

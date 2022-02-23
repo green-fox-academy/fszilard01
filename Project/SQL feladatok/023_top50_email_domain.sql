@@ -7,5 +7,5 @@
 -- 023 Illetve egy olyan lekérdezést is, ahol csak a domain rész (@ utáni rész) látható!
 
 SELECT TOP 50 Person.Person.FirstName,Person.Person.LastName,RIGHT(EmailAddress, LEN(EmailAddress) -  CHARINDEX('@', EmailAddress)) 
-FROM Person.Person FULL JOIN Person.EmailAddress
+FROM Person.Person INNER JOIN Person.EmailAddress
 ON Person.Person.BusinessEntityID = Person.EmailAddress.BusinessEntityID

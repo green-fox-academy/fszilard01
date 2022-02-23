@@ -6,5 +6,5 @@
 
 
 SELECT TOP 50 Person.Person.FirstName,Person.Person.LastName, Person.EmailAddress.EmailAddress
-FROM Person.Person FULL JOIN Person.EmailAddress
+FROM Person.Person INNER JOIN Person.EmailAddress
 ON Person.Person.BusinessEntityID = Person.EmailAddress.BusinessEntityID
