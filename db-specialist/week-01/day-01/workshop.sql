@@ -83,3 +83,144 @@ ORDER BY [Order ID] ASC;
 -- Sorrendben a SELECT késõbb van, mint a FROM, ezért a tábla lefut.
 
 -- a többit holnap folytatom.
+
+/*
+
+Top10Percent
+
+USE WideWorldImporters;
+
+
+    Remove the TOP 10 filter and see how many rows are returned.
+    Apply a TOP ten percent filter instead and see how many rows are returned.
+    Try different filter and percent values.
+*/
+SELECT TOP 10 OrderID AS [Order ID], SUM(Quantity) AS Sum_Qty
+FROM Sales.OrderLines
+WHERE UnitPrice > 10
+GROUP BY OrderID
+ORDER BY [Order ID] ASC;
+
+SELECT TOP 10 percent OrderID AS [Order ID], SUM(Quantity) AS Sum_Qty
+FROM Sales.OrderLines
+WHERE UnitPrice > 10
+GROUP BY OrderID
+ORDER BY [Order ID] ASC;
+
+SELECT OrderID AS [Order ID], SUM(Quantity) AS Sum_Qty
+FROM Sales.OrderLines
+WHERE UnitPrice > 10
+GROUP BY OrderID
+ORDER BY [Order ID] ASC;
+
+-- A TOP 10 kihagyásával 71ezer sornyi találat van, a TOP 10 percent megadásával 7141.
+
+/*
+TopWithTies
+
+USE WideWorldImporters;
+
+
+    Run the following query and see the results. What do you see?
+    Modify the query to use the TOP filter WITH TIES. What happens?
+    Modify the query to remove duplicates and then return the TOP 10 UnitPrice. What happens?
+*/
+SELECT TOP 10 UnitPrice
+FROM Sales.OrderLines
+ORDER BY UnitPrice DESC;
+
+SELECT TOP 10 WITH TIES UnitPrice
+FROM Sales.OrderLines
+ORDER BY UnitPrice DESC;
+
+SELECT DISTINCT TOP 10 UnitPrice
+FROM Sales.OrderLines
+ORDER BY UnitPrice DESC;
+
+/* A lekérdezés futtatásakor az elsõ 10 értéke egyforma, mindegyik 1899,00, a WITH TIES további 1051 sor jelenik meg,
+mert azokat is kiadja, amelyek egyenlõek a TOP 10 értékével, a DISTINCT kiveszi az egyforma sorokat, így a legnagyobb 10, különözõ értékéket kapjuk. */
+
+/*
+TopCities
+
+USE WideWorldImporters;
+
+
+    Find the table that contains data about cities.
+    Write a query that returns the 10 cities with the highest population.
+    Alias the city population column as [population].
+
+    | CityID | CityName | population |
+    ----------------------------------
+
+*/
+
+SELECT TOP 10 CityID, CityName, LatestRecordedPopulation AS population
+FROM Application.Cities;
+
+/*
+
+DistinctOrderDates
+
+USE WideWorldImporters;
+
+    Find the table where there are order dates.
+    Write a query that returns the distinct order dates in descending order.
+    Alias the returned column as [Order Date].  
+
+    | Order Date |
+    --------------
+
+    Try using a different ordering, not on order date. What happens?
+
+*/
+
+SELECT DISTINCT OrderDate AS 'Order Date' 
+FROM Sales.Orders
+ORDER BY OrderDate DESC;
+
+SELECT DISTINCT OrderDate AS 'Order Date'
+FROM Sales.Orders
+ORDER BY ExpectedDeliveryDate DESC;
+
+/*
+
+OffsetCities
+
+USE WideWorldImporters;
+
+    Find the table that contains data about cities.
+    Write a query that returns the 10 cities with the highest population, but use the paging method.
+    Alias the city population column as [population].
+
+
+    | CityID | CityName | population |
+    ----------------------------------
+
+*/
+
+SELECT CityID, CityName, LatestRecordedPopulation AS population
+FROM Application.Cities
+ORDER BY LatestRecordedPopulation DESC OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY;
+
+/*
+
+OffsetStockItems
+
+USE WideWorldImporters;
+
+    Write a query for the Sales.OrderLines table that returns:
+    - unique stock items and their descriptions
+    - ordered by stock item ID in ascending order
+    - skip the first 29 rows then return only the next 50 rows
+
+
+    | StockItemID | Description |
+    -----------------------------
+
+*/
+
+SELECT DISTINCT StockItemID, Description
+FROM Sales.OrderLines
+ORDER BY StockItemID ASC
+OFFSET 29 ROWS FETCH NEXT 50 ROWS ONLY;
