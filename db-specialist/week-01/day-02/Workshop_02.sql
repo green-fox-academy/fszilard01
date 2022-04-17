@@ -1,9 +1,6 @@
 /*
-
 Countries
 
-USE WideWorldImporters;
-    
     Write queries with a WHERE clause with different predicates/expressions 
     to query data from the Application.Countries table. 
     
@@ -53,8 +50,6 @@ WHERE CountryID IN (20, 25, 30) AND CountryName = 'Benin';
 
 CityPopulation
 
-USE WideWorldImporters;
-
     City populations in the Application.Cities table are sometimes UNKNOWN.
     
     Write a query that returns the city names where the populations are known.
@@ -80,8 +75,6 @@ WHERE LatestRecordedPopulation IS NULL;
 /*
 UnknownComments
 
-USE WideWorldImporters;
-
     Write a query that returns the first 100 order ids with comments 
     from the Sales.Orders table.
     
@@ -96,11 +89,8 @@ USE WideWorldImporters;
 SELECT TOP 100 OrderID, COALESCE(Comments, 'not available') comments
 FROM Sales.Orders;
 
-
 /*
 OrderDateAnalysis
-
-USE WideWorldImporters;
 
     Write queries for the Sales.Orders table that return orders that were placed
      - on a specific date
@@ -118,7 +108,6 @@ USE WideWorldImporters;
 
     | OrderID | OrderDate |
     -----------------------
-
 */
 
 SELECT OrderID, OrderDate
@@ -176,7 +165,140 @@ WHERE Orderdate = '2014-05-12' OR 2015=YEAR(Orderdate);
 
     | OrderID | OrderDate | mydate
     ------------------------------
-
 */
 
+SELECT OrderID, OrderDate, YEAR(OrderDate) AS my_year
+FROM Sales.Orders;
+
+SELECT OrderID, OrderDate, MONTH(OrderDate) AS my_month
+FROM Sales.Orders;
+
+SELECT OrderID, OrderDate, EOMONTH(OrderDate) AS my_eomonth
+FROM Sales.Orders;
+-- EOMONTH: a hónap utolsó napját adja eredményül
+
+SELECT OrderID, OrderDate, DATENAME(q, OrderDate) AS my_datename
+FROM Sales.Orders;
+-- DATENAME: a dátum egy részletét adja vissza/átalakítja pl:q(quarter)
+
+SELECT OrderID, OrderDate, DATEPART(m, OrderDate) AS my_datepart
+FROM Sales.Orders;
+-- DATEPART: a dátum egy részletét adja vissza/átalakítja pl:m(month)
+
+SELECT OrderID, OrderDate, DATEADD(day, 1, OrderDate) AS my_dateadd
+FROM Sales.Orders;
+-- DATEADD: Hozzáadja a megadott idõt a dátumhoz...(datepart , number , date )
+
+SELECT OrderID, OrderDate, DATEDIFF(day, OrderDate, CURRENT_TIMESTAMP) AS my_orderdate
+FROM Sales.Orders;
+-- DATEDIFF:mennyi idõ (pl.:day)telt el a táblázatban szereplõ és a 
+-- kiválasztott dátum között (pl.:current_timestamp - aktuális idõ)...( datepart , startdate , enddate )
+
+/*
+StockItemSearch
+
+    Use the Warehouse.StockItems table.
+
+    Write queries that return stockitems with the following characteristics:
+    - name starts with 'DBA'
+    - name ends with 't'
+    - name does not end with 'k'
+    - name contains the word 'joke'
+    - name starts with the letters 'a' or 'b' or 'c' or 'f'
+    - name that does not contain the words 'flash drive'
+    - name that contains the word 'ham' and the following character is not 'm'
+    - name starts with 'a', next character can be anything between 'l' and 't' 
+      and ends with any character between 'l' and 'p'
+    - name is exactly 'DBA joke mug - it depends (Black)'
+
+    | StockItemID | StockItemName |
+    -------------------------------
+*/
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE 'DBA%';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE '%t';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName NOT LIKE '%k';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE '%joke%';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE '[abcf]%';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName NOT LIKE '%flash drive%';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE '%ham%' and StockItemName NOT LIKE '%hamm%';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName LIKE 'a[l-t]%[l-p]';
+
+SELECT StockItemID, StockItemName
+FROM Warehouse.StockItems
+WHERE StockItemName = 'DBA joke mug - it depends (Black)';
+
+/*
+
+VerboseOrderDates
+
+    Write a CASE expression query for the Sales.Orders table that return 
+    order dates for the year 2013, but display a verbose quarter description too
+     - if the order date is in the first quarter of 2013 
+       write 'First quarter of 2013'
+     - if the order date is in the second quarter of 2013 
+       write 'Second quarter of 2013'
+     - if the order date is in the third quarter of 2013 
+       write 'Third quarter of 2013'
+     - if the order date is in the fourth quarter of 2013 
+       write 'Fourth quarter of 2013'
+
+    | OrderID | OrderDate | quarter |
+    ---------------------------------
+*/
+
+SELECT OrderID, OrderDate,
+CASE
+    WHEN DATENAME(qq, OrderDate) = 1 THEN 'First quarter of 2013'
+    WHEN DATENAME(qq, OrderDate) = 2 THEN 'Second quarter of 2013'
+    WHEN DATENAME(qq, OrderDate) = 3 THEN 'Third quarter of 2013'
+    WHEN DATENAME(qq, OrderDate) = 4 THEN 'Fourth quarter of 2013'
+END AS quarter
+FROM Sales.Orders
+WHERE '2013'=YEAR(OrderDate);
+--vagy WHERE OrderDate BETWEEN '2012-12-31' AND '2014-01-01';
+
+/*
+
+ConditionalOrdering
+ 
+    CASE expressions can be used in other clauses too, other than SELECT.
+
+    Write a query that uses conditional ordering.
+    Order the people by their full name in the Application.People table
+     - in ascending order if they are an employee
+     - in descending order if they are a vendor (not an employee)
+
+    | FullName | IsEmployee |
+    -------------------------
+*/
+
+SELECT FullName, IsEmployee
+FROM Application.People
+ORDER BY
+CASE IsEmployee WHEN 1 THEN FullName END ASC,
+CASE IsEmployee WHEN 0 THEN FullName END DESC;
 
