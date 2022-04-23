@@ -1,0 +1,4 @@
+USE [practice2022]
+GO
+CREATE SCHEMA [HR]
+GO
