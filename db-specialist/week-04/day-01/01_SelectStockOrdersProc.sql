@@ -11,6 +11,7 @@ USE WideWorldImporters;
      - should return the OrderLineID, OrderID and OrderDate
      - order the results by OrderDate in descending order
 */
+
 GO
 CREATE PROCEDURE Sales.customer_orders (@stockid int, @top int)
  AS 

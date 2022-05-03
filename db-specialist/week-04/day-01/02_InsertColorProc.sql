@@ -30,6 +30,7 @@ USE WideWorldImporters;
 */
 --	SELECT * FROM [WideWorldImporters].[Warehouse].[Colors]
 
+
 GO
 DROP PROCEDURE IF EXISTS Warehouse.AddColor;
 GO
